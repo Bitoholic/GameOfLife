@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.canvas.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.input.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.canvas.Canvas?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckMenuItem?>
+<?import javafx.scene.control.ColorPicker?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.control.Slider?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.shape.Circle?>
+
+<VBox fx:id="root" prefHeight="614.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.MainController">
+   <children>
+		
+                                                            		<MenuBar VBox.vgrow="NEVER">
+			<menus>
+				<Menu text="_File">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#loadRLE" text="Load RLE from file" />
+                  <MenuItem mnemonicParsing="false" onAction="#loadURL" text="Load RLE from URL" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" onAction="#closeGame" text="Close game" />
+					</items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="F" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+				</Menu>
+				
+                                                            				<Menu text="_Settings">
+					<items>
+                  <Menu fx:id="mnuRuleList" mnemonicParsing="false" text="Game rules">
+                    <items>
+                        <MenuItem mnemonicParsing="false" onAction="#menuCreateRule" text="Add new rule" />
+                        <SeparatorMenuItem mnemonicParsing="false" />
+                    </items>
+                  </Menu>
+					</items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="S" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+				</Menu>
+				
+                                                            				<Menu text="_Help">
+					<items>
+						<MenuItem mnemonicParsing="false" onAction="#howToPlay" text="Conway's Game Rules" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#controllersInfo" text="How to play" />
+						<SeparatorMenuItem mnemonicParsing="false" />
+						<MenuItem mnemonicParsing="false" onAction="#aboutMenu" text="About" />
+					</items>
+               <accelerator>
+                  <KeyCodeCombination alt="UP" code="H" control="UP" meta="UP" shift="UP" shortcut="DOWN" />
+               </accelerator>
+				</Menu>
+			</menus>
+		</MenuBar>
+      <Pane fx:id="pane" minHeight="10.0" minWidth="10.0" prefHeight="508.0" prefWidth="974.0" style="-fx-background-color: black;" VBox.vgrow="ALWAYS">
+         <children>
+      			<Canvas fx:id="canvas" height="10.0" nodeOrientation="INHERIT" width="10.0" VBox.vgrow="ALWAYS" />
+         </children>
+      </Pane>
+      <HBox alignment="CENTER" spacing="8.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
+         <children>
+            <Label fx:id="cellsAliveCnt" prefHeight="17.0" prefWidth="65.0" style="-fx-font-weight: bold;" />
+            <Label fx:id="cellsDeadCnt" prefHeight="17.0" prefWidth="84.0" style="-fx-font-weight: bold;" />
+            <Label text="Generation:" />
+            <Label fx:id="labelGen" prefHeight="17.0" prefWidth="81.0" text="0" />
+            <Label fx:id="labelDelay" alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="102.0" text="0" />
+            <Label text="ms" />
+         </children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets bottom="2.0" left="16.0" right="16.0" top="2.0" />
+         </padding>
+      </HBox>
+		<HBox alignment="CENTER" maxHeight="-Infinity" minHeight="-Infinity" prefHeight="60.0" spacing="24.0" style="-fx-background-color: white;" VBox.vgrow="NEVER">
+			<children>
+            	<Button fx:id="startPauseButton" alignment="CENTER" mnemonicParsing="false" onAction="#handleStartBtn" prefHeight="40.0" prefWidth="100.0" text="Start">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+            </Button>
+				
+                                                				<Button alignment="CENTER" mnemonicParsing="false" onAction="#handleResetBtn" prefHeight="40.0" prefWidth="100.0" text="Reset">
+				<HBox.margin>
+					<Insets />
+				</HBox.margin>
+				</Button>
+				
+                                                				<VBox alignment="CENTER">
+				<children>
+					<Label alignment="CENTER" text="Speed">
+					<VBox.margin>
+						<Insets />
+					</VBox.margin>
+					</Label>
+					
+                                                					<Slider fx:id="speedSlider" blockIncrement="1" max="350000000.0" min="0" nodeOrientation="RIGHT_TO_LEFT" prefWidth="100.0" value="175000000.0" />
+				</children>
+				<HBox.margin>
+					<Insets />
+				</HBox.margin>
+	        	</VBox>
+	        
+                                                				<VBox alignment="CENTER">
+				<HBox.margin>
+					<Insets />
+				</HBox.margin>
+			
+                                                				<children>
+					<Label alignment="CENTER" text="Zoom">
+					<VBox.margin>
+                        <Insets />
+                     </VBox.margin>
+					</Label>
+					
+                                                					<Slider fx:id="zoomSlider" blockIncrement="0.1" max="50.0" min="0.1" prefWidth="100.0" value="5.0" />
+				</children>
+            	</VBox>
+            	
+                                                            	<VBox alignment="CENTER" prefHeight="104.0" prefWidth="100.0">
+               <HBox.margin>
+                  <Insets />
+               </HBox.margin>
+				</VBox>
+            <VBox alignment="CENTER">
+               <children>
+                  <Label text="Cell color" />
+                  <ColorPicker fx:id="colorPicker" onAction="#cellColor" prefWidth="100.0" />
+               </children>
+            </VBox>
+			</children>
+         <VBox.margin>
+            <Insets />
+         </VBox.margin>
+         <padding>
+            <Insets left="16.0" right="16.0" />
+         </padding>
+  		</HBox>
+   </children>
+</VBox>
