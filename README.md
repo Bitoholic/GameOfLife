@@ -2,7 +2,7 @@
 This project was the semester assignment for the class "DATS1600 - Program development", spring 2016 @ Oslo Metropolitan University,
 handed in by the group:
 - [Ali Arfan](https://github.com/AliArfan)
-- [Kent-Erlend Knudsen](https://github.com/Bitoholic)
+- [Kent-Erlend Knudsen](https://github.com/KentErlend)
 - [Stian Tornholm Grimsgaard](https://github.com/stiangrim)
 
 It was our first major project where we tried to use all skills learned throughout the semester, which includes:
